@@ -1,0 +1,2 @@
+Welcome to my project Adventure Of Hackerman.
+This is a ASCII game with built-in engine. It's going to be some kind of RPG. There will be simple battle system, but big RPG system. There it is. If you want to explore my code, you should understand, that author of this project a kid, who just love to do games, so there is no expamples of sorts for O(log(n)), it's just my attempt to understand Direct2D. Sooo, i just wrote render, and it is 0.01% of the code, yeah. Good luck!
