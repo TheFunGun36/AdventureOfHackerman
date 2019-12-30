@@ -55,16 +55,20 @@ namespace engine {
         ID2D1SolidColorBrush* br;
         for (int iy = 0; iy < c_nCharsInY; iy++) {
             for (int ix = 0; ix < c_nCharsInX; ix++) {
-                const WCHAR wCh[1] = { map->ch[iy][ix] };
-
+                const WCHAR wCh[1] = { map->getSymbol(ix, iy) };
                 ID2D1SolidColorBrush* br;
                 ID2D1SolidColorBrush* bgBr;
                 float r, g, b;
-
-                ExpandColor(map->textColor[iy][ix], r, g, b);
+                {
+                    clr_t textColor = map->getTextColor(ix, iy);
+                    ExpandColor(textColor, r, g, b);
+                }
                 pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &br);
 
-                ExpandColor(map->bgColor[iy][ix], r, g, b);
+                {
+                    clr_t bgColor = map->getBgColor(ix, iy);
+                    ExpandColor(bgColor, r, g, b);
+                }
                 pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &bgBr);
 
                 D2D1_RECT_F rect = D2D1::RectF(

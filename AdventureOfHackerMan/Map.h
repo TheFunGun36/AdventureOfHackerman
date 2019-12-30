@@ -30,19 +30,37 @@ struct Map {
 public:
     int sizeX, sizeY;
 
-    sym** ch;//[c_nCharsInY];
-
-    clr_t** textColor;//[c_nCharsInY][c_nCharsInX];
-    clr_t** bgColor;//[c_nCharsInY][c_nCharsInX];
 
     Map(int sizeX, int sizeY);
     ~Map();
-
+    const inline sym getSymbol(int x, int y) {
+        return ch[x + y * sizeX];
+    }
+    const inline clr_t getTextColor(int x, int y) {
+        return textColor[x + y * sizeX];
+    }
+    const inline clr_t getBgColor(int x, int y) {
+        return bgColor[x + y * sizeX];
+    }
+    inline void setSymbol(int x, int y, sym v) {
+        ch[x + y * sizeX] = v;
+    }
+    inline void setTextColor(int x, int y, clr_t v) {
+        textColor[x + y * sizeX] = v;
+    }
+    inline void setBgColor(int x, int y, clr_t v) {
+        bgColor[x + y * sizeX] = v;
+    }
     void fill(sym cFiller);
     void fillColor(clr_t textColor, clr_t bgColor);
     void load(int rcName);
     void append(const Map* other, byte posX, byte posY);
 
 private:
-    static void getMapFromFile(char* map, sym** dest, int sizeX, int sizeY);
+    sym* ch;
+
+    clr_t* textColor;
+    clr_t* bgColor;
+
+    static void getMapFromFile(char* map, sym* dest, int sizeX, int sizeY);
 };

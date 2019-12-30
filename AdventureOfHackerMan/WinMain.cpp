@@ -1,10 +1,6 @@
 #include "Game.h"
 #include <windows.h>
 
-//#define GET_X_LPARAM(lp) ((int)(short)LOWORD(lp))
-//#define GET_Y_LPARAM(lp) ((int)(short)HIWORD(lp))
-//#define c_sProcessName "Hacker Of Adventure Man"
-
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {

@@ -4,48 +4,25 @@ Map::Map(int sizeX, int sizeY) {
     this->sizeX = sizeX;
     this->sizeY = sizeY;
 
-    ch = new sym * [sizeY];
-    for (int i = 0; i < sizeY; i++) {
-        ch[i] = new sym[sizeX];
-        memset(ch[i], 0, sizeof(sym) * sizeX);
-    }
+    ch = new sym[sizeY * sizeX];
+    std::fill(ch, ch + sizeX * sizeY, 0x00);
 
-    textColor = new clr_t * [sizeY];
-    for (int i = 0; i < sizeY; i++) {
-        textColor[i] = new clr_t[sizeX];
-        memset(textColor[i], c_clrDefText, sizeof(clr_t) * sizeX);
-    }
+    textColor = new clr_t[sizeY * sizeX];
+    std::fill(textColor, textColor + sizeX * sizeY, c_clrDefText);
 
-    bgColor = new clr_t * [sizeY];
-    for (int i = 0; i < sizeY; i++) {
-        bgColor[i] = new clr_t[sizeX];
-        memset(bgColor[i], c_clrDefBg, sizeof(clr_t) * sizeX);
-    }
-
-    fill(' ');
+    bgColor = new clr_t[sizeY * sizeX];
+    std::fill(bgColor, bgColor + sizeX * sizeY, c_clrDefBg);
 }
 
 Map::~Map() {
-    for (int i = 0; i < sizeY; i++) {
-        delete[](ch[i]);
-    }
     delete[](ch);
-
-    for (int i = 0; i < sizeY; i++) {
-        delete[](textColor[i]);
-    }
     delete[](textColor);
-
-    for (int i = 0; i < sizeY; i++) {
-        delete[](bgColor[i]);
-    }
     delete[](bgColor);
 }
 
 void Map::fill(sym cFiller) {
-    for (int i = 0; i < sizeY; i++) {
-        memset(ch[i], cFiller, sizeof(sym) * sizeX);
-    }
+
+    std::fill(ch, ch + sizeX * sizeY, cFiller);
 }
 
 void Map::load(int rcName) {
@@ -60,10 +37,10 @@ void Map::load(int rcName) {
     } else MessageBox(NULL, "Resource can't be found", "ERROR", MB_OK);
 }
 
-void Map::getMapFromFile(char* map, sym** dest, int sizeX, int sizeY) {
+void Map::getMapFromFile(char* map, sym* dest, int sizeX, int sizeY) {
     for (int iy = 0; iy < sizeY; iy++) {
         for (int ix = 0; ix < sizeX; ix++) {
-            dest[iy][ix] = map[ix + (iy * (sizeX + 2))];
+            dest[iy * sizeX + ix] = map[ix + iy * (sizeX + 2)];
         }
     }
 }
@@ -77,24 +54,14 @@ void Map::append(const Map* other, byte posX = 0, byte posY = 0) {
             if (ix >= this->sizeX) {
                 break;
             }
-            ch[iy + posY][ix + posX] = other->ch[iy][ix];
-            textColor[iy + posY][ix + posX] = other->textColor[iy][ix];
-            bgColor[iy + posY][ix + posX] = other->bgColor[iy][ix];
+            setSymbol(ix + posX, iy + posY, other->ch[ix + iy * other->sizeX]);
+            setTextColor(ix + posX, iy + posY, other->textColor[ix + iy * other->sizeX]);
+            setBgColor(ix + posX, iy + posY, other->bgColor[ix + iy * other->sizeX]);
         }
     }
 }
 
 void Map::fillColor(clr_t textColor, clr_t bgColor) {
-    for (int iy = 0; iy < sizeY; iy++) {
-        if (iy >= this->sizeY) {
-            break;
-        }
-        for (int ix = 0; ix < sizeX; ix++) {
-            if (ix >= this->sizeX) {
-                break;
-            }
-            this->textColor[iy][ix] = textColor;
-            this->bgColor[iy][ix] = bgColor;
-        }
-    }
+    std::fill(this->textColor, this->textColor + sizeX * sizeY, textColor);
+    std::fill(this->bgColor, this->bgColor + sizeX * sizeY, bgColor);
 }
