@@ -24,104 +24,104 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Constants.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Code\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderEngine.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Code\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Code\Engine\BasicObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassChoosing.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Exit.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="StartButton.h">
-      <Filter>Code\Game\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsButton.h">
-      <Filter>Code\Game\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="ExitButton.h">
-      <Filter>Code\Game\Objects</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="WinMain.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Code\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderEngine.cpp">
-      <Filter>Code\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="Engine\BasicObjects\Button.cpp">
       <Filter>Code\Engine\BasicObjects</Filter>
     </ClCompile>
-    <ClCompile Include="ClassChoosing.cpp">
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Level.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Map.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\RenderEngine.cpp">
+      <Filter>Code\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Code\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\ClassChoosing.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="Exit.cpp">
+    <ClCompile Include="Game\Levels\Exit.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
+    <ClCompile Include="Game\Levels\MainMenu.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsButton.cpp">
+    <ClCompile Include="Game\Levels\Options.cpp">
+      <Filter>Code\Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objects\ExitButton.cpp">
       <Filter>Code\Game\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="StartButton.cpp">
+    <ClCompile Include="Game\Objects\OptionsButton.cpp">
       <Filter>Code\Game\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
-      <Filter>Code\Game\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="ExitButton.cpp">
+    <ClCompile Include="Game\Objects\StartButton.cpp">
       <Filter>Code\Game\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AdventureOfHackerMan.rc">
+    <ClInclude Include="Engine\BasicObjects\Button.h">
+      <Filter>Code\Engine\BasicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Constants.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Level.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Map.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\RenderEngine.h">
+      <Filter>Code\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Code\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\ClassChoosing.h">
+      <Filter>Code\Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Exit.h">
+      <Filter>Code\Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\MainMenu.h">
+      <Filter>Code\Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Options.h">
+      <Filter>Code\Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\ExitButton.h">
+      <Filter>Code\Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\OptionsButton.h">
+      <Filter>Code\Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objects\StartButton.h">
+      <Filter>Code\Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\AdventureOfHackerMan.rc">
       <Filter>Resource</Filter>
     </ResourceCompile>
   </ItemGroup>

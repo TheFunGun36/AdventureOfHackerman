@@ -1,5 +1,5 @@
 #include "ExitButton.h"
-#include "Game.h"
+#include "../Game.h"
 
 ExitButton::ExitButton(byte posX, byte posY)
     :Button(posX, posY) {

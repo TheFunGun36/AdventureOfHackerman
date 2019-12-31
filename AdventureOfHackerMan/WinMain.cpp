@@ -1,4 +1,5 @@
-#include "Game.h"
+//#include "Game.h"
+#include "Game/Game.h"
 #include <windows.h>
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

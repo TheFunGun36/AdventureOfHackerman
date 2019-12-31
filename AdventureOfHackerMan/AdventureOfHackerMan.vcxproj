@@ -19,42 +19,42 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="ClassChoosing.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Exit.h" />
-    <ClInclude Include="ExitButton.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Options.h" />
-    <ClInclude Include="OptionsButton.h" />
-    <ClInclude Include="RenderEngine.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="StartButton.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="ClassChoosing.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Exit.cpp" />
-    <ClCompile Include="ExitButton.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Options.cpp" />
-    <ClCompile Include="OptionsButton.cpp" />
-    <ClCompile Include="RenderEngine.cpp" />
-    <ClCompile Include="StartButton.cpp" />
+    <ClCompile Include="Engine\BasicObjects\Button.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Level.cpp" />
+    <ClCompile Include="Engine\Map.cpp" />
+    <ClCompile Include="Engine\Object.cpp" />
+    <ClCompile Include="Engine\RenderEngine.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\Levels\ClassChoosing.cpp" />
+    <ClCompile Include="Game\Levels\Exit.cpp" />
+    <ClCompile Include="Game\Levels\MainMenu.cpp" />
+    <ClCompile Include="Game\Levels\Options.cpp" />
+    <ClCompile Include="Game\Objects\ExitButton.cpp" />
+    <ClCompile Include="Game\Objects\OptionsButton.cpp" />
+    <ClCompile Include="Game\Objects\StartButton.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AdventureOfHackerMan.rc" />
+    <ClInclude Include="Engine\BasicObjects\Button.h" />
+    <ClInclude Include="Engine\Constants.h" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\Level.h" />
+    <ClInclude Include="Engine\Map.h" />
+    <ClInclude Include="Engine\Object.h" />
+    <ClInclude Include="Engine\RenderEngine.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\Levels\ClassChoosing.h" />
+    <ClInclude Include="Game\Levels\Exit.h" />
+    <ClInclude Include="Game\Levels\MainMenu.h" />
+    <ClInclude Include="Game\Levels\Options.h" />
+    <ClInclude Include="Game\Objects\ExitButton.h" />
+    <ClInclude Include="Game\Objects\OptionsButton.h" />
+    <ClInclude Include="Game\Objects\StartButton.h" />
+    <ClInclude Include="Resources\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\AdventureOfHackerMan.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

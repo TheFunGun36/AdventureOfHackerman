@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <Windows.h>
-#include "resource.h"
+#include "../Resources/resource.h"
 #include "Constants.h"
 
 //#define GETINDEX(x,y) (y * c_nCharsInX + x)

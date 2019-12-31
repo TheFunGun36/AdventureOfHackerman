@@ -1,0 +1,15 @@
+#include "resource.h"
+
+/*TEXTURE
+BEGIN
+  IDR_MAINMENU "D:/Projects/VisualStudio/AdventureOfHackerMan/AdventureOfHackerMan/Resources/MainMenuBG.txt"
+  IDR_STARTBUTTON "StartButton.txt"
+END*/
+
+IDR_DEFAULTBG TEXTURE "../Textures/DefaultBG.txt"
+
+IDR_STARTBUTTON TEXTURE "../Textures/MainMenu/StartButton.txt"
+IDR_EXITBUTTON TEXTURE "../Textures/MainMenu/ExitButton.txt"
+IDR_OPTIONSBUTTON TEXTURE "../Textures/MainMenu/OptionsButton.txt"
+IDR_MAINMENUBG TEXTURE "../Textures/MainMenu/MainMenuBG.txt"
+

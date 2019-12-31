@@ -1,7 +1,7 @@
 #pragma once
-#include "ExitButton.h"
-#include "OptionsButton.h"
-#include "StartButton.h"
+#include "../Objects/ExitButton.h"
+#include "../Objects/OptionsButton.h"
+#include "../Objects/StartButton.h"
 
 class LMainMenu : public Level {
 public:
