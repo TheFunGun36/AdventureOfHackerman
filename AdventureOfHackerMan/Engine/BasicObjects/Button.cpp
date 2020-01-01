@@ -1,40 +1,36 @@
 #include "Button.h"
 
-Button::Button(byte posX, byte posY)
+Button::Button(byte posX, byte posY,
+    byte sizeX, byte sizeY,
+    int textureId, void action())
     :Object(posX, posY, nullptr) {
+
+    activeTexture = new Map(sizeX, sizeY);
+    activeTexture->load(textureId);
     bGenerateMouseEvents = true;
-    textureHovered = nullptr;
-    texturePressed = nullptr;
-    textureStatic = nullptr;
-    activeTexture = nullptr;
-    //texturePressed->fillColor(MakeMono(127), MakeMono(10));
+    this->action = action;
+}
 
-    //textureHovered->fillColor(MakeMono(100), MakeMono(5));
-
+void Button::eMouseLmbClick() {
+    action();
 }
 
 Button::~Button() {
-    delete textureStatic;
-    delete texturePressed;
-    delete textureHovered;
+    delete activeTexture;
 }
 
 void Button::eMouseHoverStart() {
-    activeTexture = textureHovered;
-    //engine::redraw();
+    activeTexture->fillColor(MakeMono(90), c::clrDefBg);
 }
 
 void Button::eMouseHoverEnd() {
-    activeTexture = textureStatic;
-    //engine::redraw();
+    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
 }
 
 void Button::eMouseLmbPressed() {
-    activeTexture = texturePressed;
-    //engine::redraw();
+    activeTexture->fillColor(MakeMono(127), c::clrDefBg);
 }
 
 void Button::eMouseLmbReleased() {
-    activeTexture = textureHovered;
-    //engine::redraw();
+    activeTexture->fillColor(MakeMono(90), c::clrDefBg);
 }

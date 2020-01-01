@@ -3,19 +3,19 @@
 
 class Button : public Object {
 public:
-    Button(byte posX, byte posY);
+    Button(byte posX, byte posY,
+        byte sizeX, byte sizeY,
+        int textureId, void action());
     ~Button();
 
 protected:
-    Map* textureHovered,
-        * textureStatic,
-        * texturePressed;
+    void (*action)();
+    virtual void eMouseHoverStart() override;
+    virtual void eMouseHoverEnd() override;
+    virtual void eMouseLmbPressed() override;
+    virtual void eMouseLmbReleased() override;
 
 private:
-    void eMouseHoverStart() override;
-    void eMouseHoverEnd() override;
-    void eMouseLmbPressed() override;
-    void eMouseLmbReleased() override;
-    //virtual void eMouseLmbClick();
+    void eMouseLmbClick();
 
 };

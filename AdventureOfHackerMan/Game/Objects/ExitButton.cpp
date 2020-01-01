@@ -1,4 +1,4 @@
-#include "ExitButton.h"
+/*#include "ExitButton.h"
 #include "../Game.h"
 
 ExitButton::ExitButton(byte posX, byte posY)
@@ -22,3 +22,4 @@ void ExitButton::eMouseLmbClick() {
     engine::shutdown();
 }
 
+*/

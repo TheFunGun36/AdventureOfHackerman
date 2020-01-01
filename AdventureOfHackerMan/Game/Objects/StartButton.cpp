@@ -1,5 +1,6 @@
 #include "StartButton.h"
 
+/*
 StartButton::StartButton(byte posX, byte posY)
     :Button(posX, posY) {
 
@@ -20,4 +21,4 @@ StartButton::StartButton(byte posX, byte posY)
 void StartButton::eMouseLmbClick() {
     MessageBox(NULL, "There is no game", "fuk u", MB_OK);
     engine::shutdown();
-}
+}*/

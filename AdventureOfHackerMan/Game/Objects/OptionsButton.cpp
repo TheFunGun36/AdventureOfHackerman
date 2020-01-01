@@ -1,4 +1,4 @@
-#include "OptionsButton.h"
+/*#include "OptionsButton.h"
 
 OptionsButton::OptionsButton(byte posX, byte posY)
     :Button(posX, posY) {
@@ -19,4 +19,4 @@ OptionsButton::OptionsButton(byte posX, byte posY)
 
 void OptionsButton::eMouseLmbClick() {
     MessageBox(NULL, "There is no options", "ya pashka ti ne pashka ya pashka ti ne pashka", MB_OK);
-}
+}*/

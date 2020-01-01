@@ -51,13 +51,7 @@
     <ClCompile Include="Game\Levels\ClassChoosing.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Levels\Exit.cpp">
-      <Filter>Code\Game\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Levels\MainMenu.cpp">
-      <Filter>Code\Game\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Levels\Options.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objects\ExitButton.cpp">
@@ -68,6 +62,12 @@
     </ClCompile>
     <ClCompile Include="Game\Objects\StartButton.cpp">
       <Filter>Code\Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\ExitMenu.cpp">
+      <Filter>Code\Game\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\OptionsMenu.cpp">
+      <Filter>Code\Game\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,13 +98,7 @@
     <ClInclude Include="Game\Levels\ClassChoosing.h">
       <Filter>Code\Game\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Levels\Exit.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Levels\MainMenu.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Levels\Options.h">
       <Filter>Code\Game\Levels</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objects\ExitButton.h">
@@ -118,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="Resources\resource.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\ExitMenu.h">
+      <Filter>Code\Game\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\OptionsMenu.h">
+      <Filter>Code\Game\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,8 @@
 #pragma once
-#include "../Objects/ExitButton.h"
-#include "../Objects/OptionsButton.h"
-#include "../Objects/StartButton.h"
+#include "../../Engine/BasicObjects/Button.h"
+//#include "../Objects/ExitButton.h"
+//#include "../Objects/OptionsButton.h"
+//#include "../Objects/StartButton.h"
 
 class LMainMenu : public Level {
 public:
@@ -9,9 +10,8 @@ public:
     ~LMainMenu();
 
 private:
-
-    StartButton* startButton;
-    OptionsButton* optionsButton;
-    ExitButton *exitButton;
+    Button* startButton;
+    Button* optionsButton;
+    Button* exitButton;
 
 };

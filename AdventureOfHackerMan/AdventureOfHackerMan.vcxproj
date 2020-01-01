@@ -27,9 +27,9 @@
     <ClCompile Include="Engine\RenderEngine.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\Levels\ClassChoosing.cpp" />
-    <ClCompile Include="Game\Levels\Exit.cpp" />
+    <ClCompile Include="Game\Levels\ExitMenu.cpp" />
     <ClCompile Include="Game\Levels\MainMenu.cpp" />
-    <ClCompile Include="Game\Levels\Options.cpp" />
+    <ClCompile Include="Game\Levels\OptionsMenu.cpp" />
     <ClCompile Include="Game\Objects\ExitButton.cpp" />
     <ClCompile Include="Game\Objects\OptionsButton.cpp" />
     <ClCompile Include="Game\Objects\StartButton.cpp" />
@@ -45,9 +45,9 @@
     <ClInclude Include="Engine\RenderEngine.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\Levels\ClassChoosing.h" />
-    <ClInclude Include="Game\Levels\Exit.h" />
+    <ClInclude Include="Game\Levels\ExitMenu.h" />
     <ClInclude Include="Game\Levels\MainMenu.h" />
-    <ClInclude Include="Game\Levels\Options.h" />
+    <ClInclude Include="Game\Levels\OptionsMenu.h" />
     <ClInclude Include="Game\Objects\ExitButton.h" />
     <ClInclude Include="Game\Objects\OptionsButton.h" />
     <ClInclude Include="Game\Objects\StartButton.h" />
