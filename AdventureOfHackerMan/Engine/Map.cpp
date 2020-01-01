@@ -8,10 +8,10 @@ Map::Map(int sizeX, int sizeY) {
     std::fill(ch, ch + sizeX * sizeY, 0x00);
 
     textColor = new clr_t[sizeY * sizeX];
-    std::fill(textColor, textColor + sizeX * sizeY, c_clrDefText);
+    std::fill(textColor, textColor + sizeX * sizeY, c::clrDefText);
 
     bgColor = new clr_t[sizeY * sizeX];
-    std::fill(bgColor, bgColor + sizeX * sizeY, c_clrDefBg);
+    std::fill(bgColor, bgColor + sizeX * sizeY, c::clrDefBg);
 }
 
 Map::~Map() {

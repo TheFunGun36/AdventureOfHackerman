@@ -49,7 +49,7 @@ namespace engine {
     }
 
     void renderGraphic() {
-        static Map mapToRender(c_nCharsInX, c_nCharsInY);
+        static Map mapToRender(c::charsInX, c::charsInY);
         //if (shouldBeRedrawn) {
             //shouldBeRedrawn = false;
             Object** objectList; int count;

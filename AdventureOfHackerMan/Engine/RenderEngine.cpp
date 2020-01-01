@@ -33,7 +33,7 @@ namespace engine {
                 DWRITE_FONT_WEIGHT_NORMAL,
                 DWRITE_FONT_STYLE_NORMAL,
                 DWRITE_FONT_STRETCH_NORMAL,
-                c_nSymbolSizeY - 1,
+                c::symbolSizeY - 1,
                 L"",
                 &pWtTextFormat);
         }
@@ -53,8 +53,8 @@ namespace engine {
         clearScreen(1.0f, 1.0f, 1.0f);
 
         ID2D1SolidColorBrush* br;
-        for (int iy = 0; iy < c_nCharsInY; iy++) {
-            for (int ix = 0; ix < c_nCharsInX; ix++) {
+        for (int iy = 0; iy < c::charsInY; iy++) {
+            for (int ix = 0; ix < c::charsInX; ix++) {
                 const WCHAR wCh[1] = { map->getSymbol(ix, iy) };
                 ID2D1SolidColorBrush* br;
                 ID2D1SolidColorBrush* bgBr;
@@ -72,10 +72,10 @@ namespace engine {
                 pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &bgBr);
 
                 D2D1_RECT_F rect = D2D1::RectF(
-                    static_cast<float>(c_nSymbolSizeX * ix),
-                    static_cast<float>(c_nSymbolSizeY * iy),
-                    static_cast<float>(c_nSymbolSizeX * (ix + 1)),
-                    static_cast<float>(c_nSymbolSizeY * (iy + 1)));
+                    static_cast<float>(c::symbolSizeX * ix),
+                    static_cast<float>(c::symbolSizeY * iy),
+                    static_cast<float>(ceil(c::symbolSizeX * (ix + 1))),
+                    static_cast<float>(ceil(c::symbolSizeY * (iy + 1))));
 
                 if (bgBr != nullptr) {
                     pRenderTarget->FillRectangle(rect, bgBr);

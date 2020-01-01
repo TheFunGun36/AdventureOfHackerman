@@ -4,7 +4,7 @@
 #include "../Resources/resource.h"
 #include "Constants.h"
 
-//#define GETINDEX(x,y) (y * c_nCharsInX + x)
+//#define GETINDEX(x,y) (y * c::charsInX + x)
 //#define GETCH(strArr, x, y) strArr[y][x]
 //#define SETCH(strArr, x, y, ch) strArr[y][x] = ch
 

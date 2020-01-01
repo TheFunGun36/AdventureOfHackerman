@@ -4,24 +4,25 @@
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {    
+
     WNDCLASSEX wcex;
     ZeroMemory(&wcex, sizeof(wcex));
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = WndProc;
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    wcex.lpszClassName = c_sProcessName;
+    wcex.lpszClassName = c::processName;
 
     RegisterClassEx(&wcex);
 
     RECT wndRect;
     wndRect.top = 0;
     wndRect.left = 0;
-    wndRect.right = c_nWndSizeX;
-    wndRect.bottom = c_nWndSizeY;
+    wndRect.right = c::wndSizeX;
+    wndRect.bottom = c::wndSizeY;
 
-    HWND hWnd = CreateWindow(c_sProcessName, "Adventure Of Hackerman", WS_POPUP, CW_USEDEFAULT, 0, wndRect.right, wndRect.bottom, NULL, NULL, hInstance, NULL);
+    HWND hWnd = CreateWindow(c::processName, "Adventure Of Hackerman", WS_POPUP, CW_USEDEFAULT, 0, wndRect.right, wndRect.bottom, NULL, NULL, hInstance, NULL);
     
     HRESULT* hr = new HRESULT(S_OK);
 
@@ -65,13 +66,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 break;
             }
 
-            mouseX = nMouseX / c_nSymbolSizeX;
-            if (mouseX > c_nCharsInX) {
+            mouseX = nMouseX / c::symbolSizeX;
+            if (mouseX > c::charsInX) {
                 break;
             }
 
-            mouseY = nMouseY / c_nSymbolSizeY;
-            if (mouseY > c_nCharsInY) {
+            mouseY = nMouseY / c::symbolSizeY;
+            if (mouseY > c::charsInY) {
                 break;
             }
         }
