@@ -16,24 +16,25 @@ public:
     ~Object();
 
 protected:
-    virtual void eTick(float deltaTime) {};
+    virtual void eTick(float deltaTime) {}
 
     bool bGenerateMouseEvents;
 
-    virtual void eMouseHoverStart() {};
-    virtual void eMouseHoverEnd() {};
-    virtual void eMouseHoverTick() {};
+    virtual void eMouseHoverStart(byte posX, byte posY) {}
+    virtual void eMouseHoverEnd(byte posX, byte posY) {}
+    virtual void eMouseHoverTick(byte posX, byte posY) {}
+    virtual void eMouseMoving(byte posX, byte posY) {}
 
-    virtual void eMouseLmbPressed() {};
-    virtual void eMouseLmbReleased() {};
-    virtual void eMouseLmbClick() {};
+    virtual void eMouseLmbPressed(byte x, byte y) {}
+    virtual void eMouseLmbReleased(byte x, byte y) {}
+    virtual void eMouseLmbClick(byte x, byte y) {}
 
-    virtual void eMouseRmbDown() {};
-    virtual void eMouseRmbUp() {};
-    virtual void eMouseRmbClick() {};
+    virtual void eMouseRmbDown(byte x, byte y) {}
+    virtual void eMouseRmbUp(byte x, byte y) {}
+    virtual void eMouseRmbClick(byte x, byte y) {}
 
-    virtual void eKeyDownEvent(WPARAM key) {};
-    virtual void eKeyUpEvent(WPARAM key) {};
+    virtual void eKeyDownEvent(WPARAM key) {}
+    virtual void eKeyUpEvent(WPARAM key) {}
     Map* activeTexture;
 
 private:

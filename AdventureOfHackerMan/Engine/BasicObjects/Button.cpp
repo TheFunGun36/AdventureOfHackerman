@@ -11,7 +11,7 @@ Button::Button(byte posX, byte posY,
     this->action = action;
 }
 
-void Button::eMouseLmbClick() {
+void Button::eMouseLmbClick(byte, byte) {
     action();
 }
 
@@ -19,18 +19,18 @@ Button::~Button() {
     delete activeTexture;
 }
 
-void Button::eMouseHoverStart() {
+void Button::eMouseHoverStart(byte, byte) {
     activeTexture->fillColor(MakeMono(90), c::clrDefBg);
 }
 
-void Button::eMouseHoverEnd() {
+void Button::eMouseHoverEnd(byte, byte) {
     activeTexture->fillColor(c::clrDefText, c::clrDefBg);
 }
 
-void Button::eMouseLmbPressed() {
+void Button::eMouseLmbPressed(byte, byte) {
     activeTexture->fillColor(MakeMono(127), c::clrDefBg);
 }
 
-void Button::eMouseLmbReleased() {
+void Button::eMouseLmbReleased(byte, byte) {
     activeTexture->fillColor(MakeMono(90), c::clrDefBg);
 }

@@ -1,13 +1,22 @@
-/*#include "../Object.h"
+#include "../Engine.h"
 
 class Slider : public Object {
 public:
-    Slider::
-    Slider(byte posX, byte posY, byte length, char* text);
+    Slider(byte posX, byte posY, byte length,
+        const char* text, void valueChanged(byte newValue), byte defaultValue = '\x00');
+    ~Slider();
 
 protected:
+    void eMouseLmbPressed(byte x, byte y) override;
+    void eMouseLmbReleased(byte x, byte y) override;
+    void eMouseHoverEnd(byte x, byte y) override;
+    void eMouseMoving(byte x, byte y) override;
+    virtual void eValueChanged(byte newValue);
+    void (*valueChanged)(byte n);
 
-private:
-    Map* tex;
-
-};*/
+    byte length,
+        sliderLength;
+    byte currentValue;
+    sym* basicTexture;
+    bool isMousePressed;
+};

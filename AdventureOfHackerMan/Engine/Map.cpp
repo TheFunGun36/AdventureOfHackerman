@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map(int sizeX, int sizeY) {
+Map::Map(byte sizeX, byte sizeY) {
     this->sizeX = sizeX;
     this->sizeY = sizeY;
 
@@ -59,6 +59,13 @@ void Map::append(const Map* other, byte posX = 0, byte posY = 0) {
             setBgColor(ix + posX, iy + posY, other->bgColor[ix + iy * other->sizeX]);
         }
     }
+}
+
+void Map::set(sym* texture) {
+    for (int i = 0; i < sizeX * sizeY; i++) {
+        ch[i] = texture[i];
+    }
+
 }
 
 void Map::fillColor(clr_t textColor, clr_t bgColor) {

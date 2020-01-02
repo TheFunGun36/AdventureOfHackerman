@@ -12,15 +12,9 @@ LMainMenu::LMainMenu()
     startButton = new Button(6, 10, 27, 5,
         IDR_STARTBUTTON, [] {/*TODO: change level to class choosing or smth*/});
 
-    /*exitButton = new ExitButton(6, 30);
-    optionsButton = new OptionsButton(6, 20);
-    startButton = new StartButton(6, 10);*/
-
-    //Происходит неявное преобразование в Object
-    //Не пихайте сюда C-style касты, а ещё хуже - static_cast-ы
-    objectList[0] = exitButton;
-    objectList[1] = optionsButton;
-    objectList[2] = startButton;
+    objectList[0] = static_cast<Object*>(exitButton);
+    objectList[1] = static_cast<Object*>(optionsButton);
+    objectList[2] = static_cast<Object*>(startButton);
 }
 
 LMainMenu::~LMainMenu() {

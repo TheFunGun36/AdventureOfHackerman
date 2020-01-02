@@ -11,6 +11,7 @@
 /*
   00RRGGBB
 */
+
 typedef byte clr_t;
 typedef char sym;
 
@@ -28,10 +29,10 @@ b = (x & 128) ? (static_cast<float>(GetMono(x)) / 127.0f) : ((GetBlue(x) / 3.0f)
 
 struct Map {
 public:
-    int sizeX, sizeY;
+   byte sizeX, sizeY;
 
 
-    Map(int sizeX, int sizeY);
+    Map(byte sizeX, byte sizeY);
     ~Map();
     const inline sym getSymbol(int x, int y) {
         return ch[x + y * sizeX];
@@ -54,6 +55,7 @@ public:
     void fill(sym cFiller);
     void fillColor(clr_t textColor, clr_t bgColor);
     void load(int rcName);
+    void set(sym* texture);
     void append(const Map* other, byte posX, byte posY);
 
 private:

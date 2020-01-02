@@ -1,8 +1,6 @@
 #pragma once
+#include "../../Engine/BasicObjects/Slider.h"
 #include "../../Engine/BasicObjects/Button.h"
-//#include "../Objects/ExitButton.h"
-//#include "../Objects/OptionsButton.h"
-//#include "../Objects/StartButton.h"
 
 class LMainMenu : public Level {
 public:
