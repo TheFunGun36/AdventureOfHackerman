@@ -1,12 +1,10 @@
 #include "Level.h"
 
 Level::Level(int objectNumber, int backgroundId)
-    :background(c::charsInX, c::charsInY) {
-    background.load(IDR_DEFAULTBG);
+    :background(IDR_DEFAULTBG) {
     
     if (backgroundId != 0) {
-        Map tmpMap(c::charsInX, c::charsInY);
-        tmpMap.load(backgroundId);
+        Map tmpMap(backgroundId);
         background.append(&tmpMap, 0, 0);
     }
 

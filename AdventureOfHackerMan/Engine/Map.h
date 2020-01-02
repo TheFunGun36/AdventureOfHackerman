@@ -32,6 +32,7 @@ public:
    byte sizeX, sizeY;
 
 
+    Map(int rcName);
     Map(byte sizeX, byte sizeY);
     ~Map();
     const inline sym getSymbol(int x, int y) {
@@ -54,7 +55,7 @@ public:
     }
     void fill(sym cFiller);
     void fillColor(clr_t textColor, clr_t bgColor);
-    void load(int rcName);
+    //void load(int rcName);
     void set(sym* texture);
     void append(const Map* other, byte posX, byte posY);
 
@@ -64,5 +65,5 @@ private:
     clr_t* textColor;
     clr_t* bgColor;
 
-    static void getMapFromFile(char* map, sym* dest, int sizeX, int sizeY);
+    //static void getMapFromFile(char* map, sym* dest, int sizeX, int sizeY);
 };

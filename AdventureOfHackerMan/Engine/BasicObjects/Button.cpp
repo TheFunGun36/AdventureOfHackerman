@@ -5,8 +5,8 @@ Button::Button(byte posX, byte posY,
     int textureId, void action())
     :Object(posX, posY, nullptr) {
 
-    activeTexture = new Map(sizeX, sizeY);
-    activeTexture->load(textureId);
+    activeTexture = new Map(textureId);
+    //activeTexture->load(textureId);
     bGenerateMouseEvents = true;
     this->action = action;
 }
