@@ -12,4 +12,5 @@ IDR_STARTBUTTON TEXTURE "../Textures/MainMenu/StartButton.txt"
 IDR_EXITBUTTON TEXTURE "../Textures/MainMenu/ExitButton.txt"
 IDR_OPTIONSBUTTON TEXTURE "../Textures/MainMenu/OptionsButton.txt"
 IDR_MAINMENUBG TEXTURE "../Textures/MainMenu/MainMenuBG.txt"
-
+IDR_OPTIONSMENUBG TEXTURE "../Textures/OptionsMenu/OptionsMenuBG.txt"
+IDR_BACKBUTTON TEXTURE "../Textures/OptionsMenu/BackButton.txt"

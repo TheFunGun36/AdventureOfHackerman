@@ -10,20 +10,31 @@
 
 namespace game {
     namespace {
+        Level** level;
         LMainMenu *lMainMenu;
+        LOptionsMenu* lOptionsMenu;
+        constexpr int levelsNum = 2;
         //Level lOptions,
           //lClassChoosing,
          // lWantToExit;
     }
 
     void initialize(HWND hWnd, HRESULT& hr){
-        engine::initialize(hWnd, hr);
         lMainMenu = new LMainMenu();
-        engine::changeLevel(static_cast<Level*>(lMainMenu));
+        lOptionsMenu = new LOptionsMenu();
+
+        level = new Level * [levelsNum];
+        level[0] = static_cast<Level*>(lMainMenu);
+        level[1] = static_cast<Level*>(lOptionsMenu);
+        
+        
+        engine::initialize(hWnd, hr, levelsNum, level);
+        engine::changeLevel(idMainMenu);
     }
 
     void uninitialize() {
         delete lMainMenu;
+        delete[]level;
         engine::uninitialize();
     }
 }

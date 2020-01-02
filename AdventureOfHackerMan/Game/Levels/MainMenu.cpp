@@ -7,7 +7,7 @@ LMainMenu::LMainMenu()
         IDR_EXITBUTTON, [] { engine::shutdown(); });
 
     optionsButton = new Button(6, 20, 37, 6,
-        IDR_OPTIONSBUTTON, [] {/*TODO: change level to optionsMenu*/});
+        IDR_OPTIONSBUTTON, [] { engine::changeLevel(idOptionsMenu); });
 
     startButton = new Button(6, 10, 27, 5,
         IDR_STARTBUTTON, [] {/*TODO: change level to class choosing or smth*/});

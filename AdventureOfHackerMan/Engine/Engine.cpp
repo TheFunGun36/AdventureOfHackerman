@@ -5,6 +5,7 @@ namespace engine {
         Renderer renderer;
         HWND hWnd;
         std::chrono::time_point<std::chrono::steady_clock> storedTime;
+        Level** levelArr;
         Level* currentLevel;
 
         float getDeltaTime() {
@@ -19,9 +20,10 @@ namespace engine {
         //bool shouldBeRedrawn = true;
     }
 
-    void initialize(HWND hWnd, HRESULT& hr) {
+    void initialize(HWND hWnd, HRESULT& hr, int levelNum, Level** levels) {
         renderer.initialize(hWnd, hr);
         currentLevel = nullptr;
+        levelArr = levels;
         engine::hWnd = hWnd;
     }
 
@@ -33,8 +35,8 @@ namespace engine {
         DestroyWindow(hWnd);
     }
 
-    void changeLevel(Level* newLevel) {
-        currentLevel = newLevel;
+    void changeLevel(LevelId lId) {
+        currentLevel = levelArr[lId];
     }
 
     void computeGameLogic() {
