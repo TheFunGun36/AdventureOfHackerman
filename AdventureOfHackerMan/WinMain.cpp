@@ -85,16 +85,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 byte objectX1, objectY1,
                     objectX2, objectY2;
                 objectList[i]->getPosition(&objectX1, &objectY1, &objectX2, &objectY2);
-                if ((mouseX >= objectX1) && (mouseX <= objectX2)
-                    && (mouseY >= objectY1) && (mouseY <= objectY2)) {
+                if ((mouseX >= objectX1) && (mouseX < objectX2)
+                    && (mouseY >= objectY1) && (mouseY < objectY2)) {
                     if (!objectList[i]->bMouseIsHovering) {
-                        objectList[i]->eMouseHoverStart(mouseX, mouseY);
+                        objectList[i]->eMouseHoverStart(mouseX - objectList[i]->posX,
+                            mouseY - objectList[i]->posY);
                         objectList[i]->bMouseIsHovering = true;
                     }
-                    objectList[i]->eMouseMoving(mouseX - objectList[i]->posX, mouseY - objectList[i]->posY);
+                    objectList[i]->eMouseMoving(mouseX - objectList[i]->posX,
+                        mouseY - objectList[i]->posY);
                 } else {
                     if (objectList[i]->bMouseIsHovering) {
-                        objectList[i]->eMouseHoverEnd(mouseX, mouseY);
+                        objectList[i]->eMouseHoverEnd(mouseX - objectList[i]->posX,
+                            mouseY - objectList[i]->posY);
                         objectList[i]->bMouseIsHovering = false;
                         objectList[i]->bLmbDownHandled = false;
                     }
@@ -109,7 +112,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         Object** objectList = engine::getCurrentLevel()->getObjectArray(&arraySize);
         for (int i = 0; i < arraySize; i++) {
             if (objectList[i]->bGenerateMouseEvents && objectList[i]->bMouseIsHovering) {
-                objectList[i]->eMouseLmbPressed(mouseX, mouseY);
+                objectList[i]->eMouseLmbPressed(mouseX - objectList[i]->posX,
+                    mouseY - objectList[i]->posY);
                 objectList[i]->bLmbDownHandled = true;
             }
         }
@@ -121,9 +125,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         Object** objectList = engine::getCurrentLevel()->getObjectArray(&arraySize);
         for (int i = 0; i < arraySize; i++) {
             if (objectList[i]->bGenerateMouseEvents && objectList[i]->bMouseIsHovering) {
-                objectList[i]->eMouseLmbReleased(mouseX, mouseY);
+                objectList[i]->eMouseLmbReleased(mouseX - objectList[i]->posX,
+                    mouseY - objectList[i]->posY);
                 if (objectList[i]->bLmbDownHandled) {
-                    objectList[i]->eMouseLmbClick(mouseX, mouseY);
+                    objectList[i]->eMouseLmbClick(mouseX - objectList[i]->posX,
+                        mouseY - objectList[i]->posY);
                     objectList[i]->bLmbDownHandled = false;
                 }
             }
@@ -136,7 +142,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         Object** objectList = engine::getCurrentLevel()->getObjectArray(&arraySize);
         for (int i = 0; i < arraySize; i++) {
             if (objectList[i]->bGenerateMouseEvents && objectList[i]->bMouseIsHovering) {
-                objectList[i]->eMouseRmbDown(mouseX, mouseY);
+                objectList[i]->eMouseRmbDown(mouseX - objectList[i]->posX,
+                    mouseY - objectList[i]->posY);
                 objectList[i]->bRmbDownHandled = true;
             }
         }
@@ -148,9 +155,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         Object** objectList = engine::getCurrentLevel()->getObjectArray(&arraySize);
         for (int i = 0; i < arraySize; i++) {
             if (objectList[i]->bGenerateMouseEvents && objectList[i]->bMouseIsHovering) {
-                objectList[i]->eMouseRmbUp(mouseX, mouseY);
+                objectList[i]->eMouseRmbUp(mouseX - objectList[i]->posX,
+                    mouseY - objectList[i]->posY);
                 if (objectList[i]->bRmbDownHandled) {
-                    objectList[i]->eMouseRmbClick(mouseX, mouseY);
+                    objectList[i]->eMouseRmbClick(mouseX - objectList[i]->posX,
+                        mouseY - objectList[i]->posY);
                     objectList[i]->bRmbDownHandled = false;
                 }
             }

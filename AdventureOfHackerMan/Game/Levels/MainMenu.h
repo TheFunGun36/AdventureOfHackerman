@@ -11,5 +11,5 @@ private:
     Button* startButton;
     Button* optionsButton;
     Button* exitButton;
-
+    Slider* slider;
 };

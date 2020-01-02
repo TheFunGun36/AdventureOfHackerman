@@ -31,6 +31,7 @@ Slider::Slider(byte posX, byte posY, byte length,
     activeTexture->set(basicTexture);
 
     eValueChanged(defaultValue);
+    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
 }
 
 void Slider::eValueChanged(byte newValue) {
@@ -47,6 +48,8 @@ void Slider::eValueChanged(byte newValue) {
     }
     currentValue = newValue;
     activeTexture->set(basicTexture);
+    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
+    activeTexture->setTextColor(newValue, 1, MakeMono(127));
 
     valueChanged(newValue);
 }
@@ -59,14 +62,17 @@ Slider::~Slider() {
 void Slider::eMouseLmbPressed(byte x, byte y) {
     isMousePressed = true;
     eMouseMoving(x, y);
+    activeTexture->setTextColor(currentValue, 1, MakeMono(127));
 }
 
 void Slider::eMouseLmbReleased(byte, byte) {
     isMousePressed = false;
+    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
 }
 
 void Slider::eMouseHoverEnd(byte, byte) {
     isMousePressed = false;
+    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
 }
 
 void Slider::eMouseMoving(byte x, byte y) {
