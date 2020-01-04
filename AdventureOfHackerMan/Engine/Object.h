@@ -9,7 +9,9 @@ namespace engine {
 class Object {
 public:
 
-    Map* getTexture();
+    const inline Map* getTexture() {
+        return activeTexture;
+    }
     byte posX, posY;
 
     Object(byte posX = '\x00', byte posY = '\x00', Map* texture = nullptr);
@@ -18,32 +20,32 @@ public:
 protected:
     virtual void eTick(float deltaTime) {}
 
-    bool bGenerateMouseEvents;
+    bool generateMouseEvents;
 
-    virtual void eMouseHoverStart(byte posX, byte posY) {}
-    virtual void eMouseHoverEnd(byte posX, byte posY) {}
-    virtual void eMouseHoverTick(byte posX, byte posY) {}
-    virtual void eMouseMoving(byte posX, byte posY) {}
+    virtual void emhStart(byte x, byte y) {}
+    virtual void emhEnd(byte x, byte y) {}
+    virtual void emhTick(byte x, byte y) {}
+    virtual void emhMoving(byte x, byte y) {}
 
-    virtual void eMouseLmbPressed(byte x, byte y) {}
-    virtual void eMouseLmbReleased(byte x, byte y) {}
-    virtual void eMouseLmbClick(byte x, byte y) {}
+    virtual void emlPressed(byte x, byte y) {}
+    virtual void emlReleased(byte x, byte y) {}
+    virtual void emlClick(byte x, byte y) {}
 
-    virtual void eMouseRmbDown(byte x, byte y) {}
-    virtual void eMouseRmbUp(byte x, byte y) {}
-    virtual void eMouseRmbClick(byte x, byte y) {}
+    virtual void emrPressed(byte x, byte y) {}
+    virtual void emrReleased(byte x, byte y) {}
+    virtual void emrClick(byte x, byte y) {}
 
-    virtual void eKeyDownEvent(WPARAM key) {}
-    virtual void eKeyUpEvent(WPARAM key) {}
+    virtual void eKeyPressed(WPARAM key) {}
+    virtual void eKeyReleased(WPARAM key) {}
     Map* activeTexture;
 
 private:
-    bool bMouseIsHovering;
-    bool bLmbDownHandled;
-    bool bRmbDownHandled;
+    bool isMouseHovering;
+    bool isLmbDownHandled;
+    bool isRmbDownHandled;
 
     //special 4 our friend :p
-    void getPosition(byte* posX, byte* posY, byte* posX2, byte* posY2);
+    const void getPosition(byte* posX, byte* posY, byte* posX2, byte* posY2);
 
     friend LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
     friend void engine::computeGameLogic();

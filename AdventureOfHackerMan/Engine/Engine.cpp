@@ -5,7 +5,7 @@ namespace engine {
         Renderer renderer;
         HWND hWnd;
         std::chrono::time_point<std::chrono::steady_clock> storedTime;
-        Level** levelArr;
+        Level** levelList;
         Level* currentLevel;
 
         float getDeltaTime() {
@@ -23,7 +23,7 @@ namespace engine {
     void initialize(HWND hWnd, HRESULT& hr, int levelNum, Level** levels) {
         renderer.initialize(hWnd, hr);
         currentLevel = nullptr;
-        levelArr = levels;
+        levelList = levels;
         engine::hWnd = hWnd;
     }
 
@@ -35,43 +35,35 @@ namespace engine {
         DestroyWindow(hWnd);
     }
 
-    void changeLevel(LevelId lId) {
-        currentLevel = levelArr[lId];
+    void changeLevel(LevelId levelId) {
+        currentLevel = levelList[levelId];
     }
 
     void computeGameLogic() {
         float deltaTime = getDeltaTime();
         currentLevel->tick(deltaTime);
-        Object** objectList; int count;
-        objectList = currentLevel->getObjectArray(&count);
+        Object** objectList; int objectNumber;
+        objectList = currentLevel->getObjectArray(&objectNumber);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < objectNumber; i++) {
             objectList[i]->eTick(deltaTime);
         }
     }
 
     void renderGraphic() {
-        static Map mapToRender(c::charsInX, c::charsInY);
-        //if (shouldBeRedrawn) {
-            //shouldBeRedrawn = false;
-            Object** objectList; int count;
-            objectList = currentLevel->getObjectArray(&count);
+        static Map mapToRender(constants::charsInX, constants::charsInY);
+        Object** objectList; int count;
+        objectList = currentLevel->getObjectArray(&count);
+        mapToRender.append(&currentLevel->background, 0, 0);
 
-            mapToRender.append(&currentLevel->background, 0, 0);
+        for (int i = 0; i < count; i++) {
+            mapToRender.append(objectList[i]->getTexture(), objectList[i]->posX, objectList[i]->posY);
+        }
 
-            for (int i = 0; i < count; i++) {
-                mapToRender.append(objectList[i]->getTexture(), objectList[i]->posX, objectList[i]->posY);
-            }
-
-            renderer.renderMap(&mapToRender);
-        //}
+        renderer.renderMap(&mapToRender);
     }
 
     Level* getCurrentLevel() {
         return currentLevel;
     }
-
-   // void redraw() {
-    //    shouldBeRedrawn = true;
-    //}
 }

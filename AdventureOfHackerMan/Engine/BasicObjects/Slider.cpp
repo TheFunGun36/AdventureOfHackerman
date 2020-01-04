@@ -1,57 +1,58 @@
 #include "Slider.h"
 
-Slider::Slider(byte posX, byte posY, byte length,
-    const char* text, void valueChanged(byte newValue), byte defaultValue)
+Slider::Slider(byte posX, byte posY, byte sliderLength,
+    const char* text, void onValueChanged(byte newValue), byte defaultValue)
     :Object(posX, posY) {
-    bGenerateMouseEvents = true;
+    
+    generateMouseEvents = true;
     isMousePressed = false;
-    this->valueChanged = valueChanged;
-
-    sliderLength = length;
+    this->onValueChanged = onValueChanged;
+    this->sliderLength = sliderLength;
     byte textLength = '\x00';
     
-    // !!! careful here !!!
     while (text[textLength] != '\0') {
         textLength++;
     }
 
-    this->length = max(length, sliderLength);
-
-    basicTexture = new sym[static_cast<long long>(this->length) << 1];
-    std::fill(basicTexture, basicTexture + length * 2, ' ');
+    realLength = max(sliderLength, textLength);
+    basicTexture = new char[realLength << 1];
+    std::fill(basicTexture, basicTexture + (sliderLength << 1), ' ');
 
     for (int i = 0; i < textLength; i++) {
         basicTexture[i] = text[i];
     }
 
-    basicTexture[this->length] = '<';
-    basicTexture[this->length + --sliderLength] = '>';
+    basicTexture[realLength] = '<';
+    basicTexture[realLength + --sliderLength] = '>';
 
-    activeTexture = new Map(this->length, 2);
+    activeTexture = new Map(realLength, 2);
     activeTexture->set(basicTexture);
 
     eValueChanged(defaultValue);
-    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
+    activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
 }
 
 void Slider::eValueChanged(byte newValue) {
-    int i = this->length + 1;
-    for (; i < newValue + this->length; i++) {
+    int i = realLength + 1;
+
+    for (; i < newValue + realLength; i++) {
         basicTexture[i] = '=';
     }
-    if ((newValue > 0) && (newValue < sliderLength)) {
+
+    if ((newValue > 0) && (newValue < sliderLength - 1)) {
         basicTexture[i] = '#';
         i++;
     }
-    for (; i < sliderLength + this->length; i++) {
+
+    for (; i < sliderLength + realLength - 1; i++) {
         basicTexture[i] = '.';
     }
+
     currentValue = newValue;
     activeTexture->set(basicTexture);
-    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
-    activeTexture->setTextColor(newValue, 1, MakeMono(127));
-
-    valueChanged(newValue);
+    activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
+    activeTexture->setSymbolColor(newValue, 1, MakeMono(127));
+    onValueChanged(newValue);
 }
 
 Slider::~Slider() {
@@ -59,23 +60,23 @@ Slider::~Slider() {
     delete activeTexture;
 }
 
-void Slider::eMouseLmbPressed(byte x, byte y) {
+void Slider::emlPressed(byte x, byte y) {
     isMousePressed = true;
-    eMouseMoving(x, y);
-    activeTexture->setTextColor(currentValue, 1, MakeMono(127));
+    emhMoving(x, y);
+    activeTexture->setSymbolColor(currentValue, 1, MakeMono(127));
 }
 
-void Slider::eMouseLmbReleased(byte, byte) {
+void Slider::emlReleased(byte, byte) {
     isMousePressed = false;
-    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
+    activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
 }
 
-void Slider::eMouseHoverEnd(byte, byte) {
+void Slider::emhEnd(byte, byte) {
     isMousePressed = false;
-    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
+    activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
 }
 
-void Slider::eMouseMoving(byte x, byte y) {
+void Slider::emhMoving(byte x, byte y) {
     if ((y == 1) && isMousePressed) {
         if ((x <= sliderLength) && (x != currentValue)) {
             eValueChanged(x);

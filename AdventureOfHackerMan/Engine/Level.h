@@ -6,8 +6,8 @@ public:
     Level(int objectNumber, int backgroundId = 0);
     ~Level();
 
-    Object** getObjectArray(int* count) {
-        *count = objectCount;
+    inline Object** getObjectArray(int* count) {
+        *count = objectNumber;
         return objectList;
     }
 
@@ -16,5 +16,5 @@ public:
 
 protected:
     Object** objectList;
-    int objectCount;
+    int objectNumber;
 };

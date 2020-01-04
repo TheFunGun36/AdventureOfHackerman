@@ -1,19 +1,14 @@
 #include "Level.h"
 
 Level::Level(int objectNumber, int backgroundId)
-    :background(IDR_DEFAULTBG) {
+    :background(backgroundId) {
     
-    if (backgroundId != 0) {
-        Map tmpMap(backgroundId);
-        background.append(&tmpMap, 0, 0);
-    }
-
-    this->objectCount = objectNumber;
+    this->objectNumber = objectNumber;
     objectList = new Object * [objectNumber];
 }
 
 Level::~Level() {
-    for (int i = 0; i < objectCount; i++) {
+    for (int i = 0; i < objectNumber; i++) {
         objectList[i] = nullptr;
     }
     delete[]objectList;

@@ -1,82 +1,73 @@
 #include "Map.h"
 
 Map::Map(int rcName) {
-    ch = nullptr;
-    HRSRC hRes = FindResource(NULL, MAKEINTRESOURCE(rcName), "TEXTURE");
-    if (hRes != 0) {
-        HGLOBAL hBytes = LoadResource(NULL, hRes);
-        if (hBytes != 0) {
+    symbol = nullptr;
+    HRSRC source = FindResource(NULL, MAKEINTRESOURCE(rcName), "TEXTURE");
+    HGLOBAL resource = LoadResource(NULL, source);
+    LPVOID rawData = LockResource(resource);
+    char* data = static_cast<char*>(rawData);
+    int charactersToSkip = 0;
+    std::string firstLine;
 
-            LPVOID pData = LockResource(hBytes);
-            char* map = static_cast<char*>(pData);
-            int c = 0;
-            std::string str;
+    if ((data[0] == 'B') && (data[1] == 'G')) {
+        charactersToSkip = 4;
+        sizeX = constants::charsInX;
+        sizeY = constants::charsInY;
+    }
+    else {
+        for (int i = 0; data[i] != ' '; i++) {
+            charactersToSkip++;
+            firstLine.push_back(data[i]);
+        }
 
-            if ((map[0] == 'B') && (map[1] == 'G')) {
-                c = 4;
-                sizeX = c::charsInX;
-                sizeY = c::charsInY;
-            }
-            else {
-                for (int i = 0; map[i] != ' '; i++) {
-                    c++;
-                    str.push_back(map[i]);
-                }
-                sizeX = std::stoi(str);
-                c++;
-                str.clear();
-                for (int i = c; map[i] != '\r'; i++) {
-                    c++;
-                    str.push_back(map[i]);
-                }
-                sizeY = std::stoi(str);
-                c += 2;
-            }
-            
-            ch = new sym[sizeX * sizeY];
+        sizeX = std::stoi(firstLine);
+        charactersToSkip++;
+        firstLine.clear();
 
-            for (int iy = 0; iy < sizeY; iy++) {
-                for (int ix = 0; ix < sizeX; ix++) {
-                    ch[iy * sizeX + ix] = map[ix + iy * (sizeX + 2) + c];
-                }
-            }
-            //str;
-        } else MessageBox(NULL, "Resource can't be loaded", "ERROR", MB_OK);
-    } else MessageBox(NULL, "Resource can't be found", "ERROR", MB_OK);
+        for (int i = charactersToSkip; data[i] != '\r'; i++) {
+            charactersToSkip++;
+            firstLine.push_back(data[i]);
+        }
 
-    //ch = new sym[sizeY * sizeX];
-    //std::fill(ch, ch + sizeX * sizeY, 0x00);
+        sizeY = std::stoi(firstLine);
+        charactersToSkip += 2;
+    }
 
-    textColor = new clr_t[sizeY * sizeX];
-    std::fill(textColor, textColor + sizeX * sizeY, c::clrDefText);
+    symbol = new char[sizeX * sizeY];
 
-    bgColor = new clr_t[sizeY * sizeX];
-    std::fill(bgColor, bgColor + sizeX * sizeY, c::clrDefBg);
+    for (int iy = 0; iy < sizeY; iy++) {
+        memcpy(symbol + sizeX * iy, data + iy * (sizeX + 2) + charactersToSkip, sizeX);
+    }
+
+    symbolColor = new color[sizeY * sizeX];
+    std::fill(symbolColor, symbolColor + sizeX * sizeY, constants::clrDefText);
+
+    symbolBgColor = new color[sizeY * sizeX];
+    std::fill(symbolBgColor, symbolBgColor + sizeX * sizeY, constants::clrDefBg);
 }
 
 Map::Map(byte sizeX, byte sizeY) {
     this->sizeX = sizeX;
     this->sizeY = sizeY;
 
-    ch = new sym[sizeY * sizeX];
-    std::fill(ch, ch + sizeX * sizeY, 0x00);
+    symbol = new char[sizeY * sizeX];
+    std::fill(symbol, symbol + sizeX * sizeY, '\x00');
 
-    textColor = new clr_t[sizeY * sizeX];
-    std::fill(textColor, textColor + sizeX * sizeY, c::clrDefText);
+    symbolColor = new color[sizeY * sizeX];
+    std::fill(symbolColor, symbolColor + sizeX * sizeY, constants::clrDefText);
 
-    bgColor = new clr_t[sizeY * sizeX];
-    std::fill(bgColor, bgColor + sizeX * sizeY, c::clrDefBg);
+    symbolBgColor = new color[sizeY * sizeX];
+    std::fill(symbolBgColor, symbolBgColor + sizeX * sizeY, constants::clrDefBg);
 }
 
 Map::~Map() {
-    delete[](ch);
-    delete[](textColor);
-    delete[](bgColor);
+    delete[](symbol);
+    delete[](symbolColor);
+    delete[](symbolBgColor);
 }
 
-void Map::fill(sym cFiller) {
-
-    std::fill(ch, ch + sizeX * sizeY, cFiller);
+void Map::fill(char cFiller) {
+    std::fill(symbol, symbol + sizeX * sizeY, cFiller);
 }
 
 void Map::append(const Map* other, byte posX = 0, byte posY = 0) {
@@ -88,20 +79,20 @@ void Map::append(const Map* other, byte posX = 0, byte posY = 0) {
             if (ix >= this->sizeX) {
                 break;
             }
-            setSymbol(ix + posX, iy + posY, other->ch[ix + iy * other->sizeX]);
-            setTextColor(ix + posX, iy + posY, other->textColor[ix + iy * other->sizeX]);
-            setBgColor(ix + posX, iy + posY, other->bgColor[ix + iy * other->sizeX]);
+            setSymbol(ix + posX, iy + posY, other->symbol[ix + iy * other->sizeX]);
+            setSymbolColor(ix + posX, iy + posY, other->symbolColor[ix + iy * other->sizeX]);
+            setSymbolBgColor(ix + posX, iy + posY, other->symbolBgColor[ix + iy * other->sizeX]);
         }
     }
 }
 
-void Map::set(sym* texture) {
+void Map::set(char* texture) {
     for (int i = 0; i < sizeX * sizeY; i++) {
-        ch[i] = texture[i];
+        symbol[i] = texture[i];
     }
 }
 
-void Map::fillColor(clr_t textColor, clr_t bgColor) {
-    std::fill(this->textColor, this->textColor + sizeX * sizeY, textColor);
-    std::fill(this->bgColor, this->bgColor + sizeX * sizeY, bgColor);
+void Map::fillColor(color symbolColor, color symbolBgColor) {
+    std::fill(this->symbolColor, this->symbolColor + sizeX * sizeY, symbolColor);
+    std::fill(this->symbolBgColor, this->symbolBgColor + sizeX * sizeY, symbolBgColor);
 }

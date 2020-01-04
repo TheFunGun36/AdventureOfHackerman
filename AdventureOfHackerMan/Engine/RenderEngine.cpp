@@ -2,12 +2,12 @@
 
 namespace engine {
     void Renderer::initialize(HWND hWnd, HRESULT& hr) {
-        pFactory = nullptr;
-        pRenderTarget = nullptr;
-        pWtFactory = nullptr;
-        pWtTextFormat = nullptr;
+        factory = nullptr;
+        renderTarget = nullptr;
+        writetFactory = nullptr;
+        writeTextFormat = nullptr;
 
-        hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory);
+        hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
 
         if (SUCCEEDED(hr)) {
             RECT rect;
@@ -15,80 +15,80 @@ namespace engine {
 
             D2D1_SIZE_U wndSize = D2D1::SizeU(rect.right, rect.bottom);
 
-            hr = pFactory->CreateHwndRenderTarget(
+            hr = factory->CreateHwndRenderTarget(
                 D2D1::RenderTargetProperties(),
                 D2D1::HwndRenderTargetProperties(hWnd, wndSize),
-                &pRenderTarget);
+                &renderTarget);
         }
 
         if (SUCCEEDED(hr)) {
             hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
-                __uuidof(pWtFactory),
-                reinterpret_cast<IUnknown**>(&pWtFactory));
+                __uuidof(writetFactory),
+                reinterpret_cast<IUnknown**>(&writetFactory));
         }
 
         if (SUCCEEDED(hr)) {
-            hr = pWtFactory->CreateTextFormat(L"Lucida console",
+            hr = writetFactory->CreateTextFormat(L"Lucida console",
                 NULL,
                 DWRITE_FONT_WEIGHT_NORMAL,
                 DWRITE_FONT_STYLE_NORMAL,
                 DWRITE_FONT_STRETCH_NORMAL,
-                c::symbolSizeY - 1,
+                constants::charSizeY - 1,
                 L"",
-                &pWtTextFormat);
+                &writeTextFormat);
         }
     }
 
     void Renderer::uninitialize() {
-        if (pFactory != nullptr) {
-            pFactory->Release();
+        if (factory != nullptr) {
+            factory->Release();
         }
-        if (pRenderTarget != nullptr) {
-            pRenderTarget->Release();
+        if (renderTarget != nullptr) {
+            renderTarget->Release();
         }
     }
 
     void Renderer::renderMap(Map* map) {
-        pRenderTarget->BeginDraw();
+        renderTarget->BeginDraw();
         clearScreen(1.0f, 1.0f, 1.0f);
 
         ID2D1SolidColorBrush* br;
-        for (int iy = 0; iy < c::charsInY; iy++) {
-            for (int ix = 0; ix < c::charsInX; ix++) {
+        for (int iy = 0; iy < constants::charsInY; iy++) {
+            for (int ix = 0; ix < constants::charsInX; ix++) {
                 const WCHAR wCh[1] = { map->getSymbol(ix, iy) };
                 ID2D1SolidColorBrush* br;
                 ID2D1SolidColorBrush* bgBr;
                 float r, g, b;
                 {
-                    clr_t textColor = map->getTextColor(ix, iy);
-                    ExpandColor(textColor, r, g, b);
+                    color symbolColor = map->getSymbolColor(ix, iy);
+                    ExpandColor(symbolColor, r, g, b);
                 }
-                pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &br);
+                renderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &br);
 
                 {
-                    clr_t bgColor = map->getBgColor(ix, iy);
-                    ExpandColor(bgColor, r, g, b);
+                    color symbolBgColor = map->getSymbolBgColor(ix, iy);
+                    ExpandColor(symbolBgColor, r, g, b);
                 }
-                pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &bgBr);
+                renderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &bgBr);
 
                 D2D1_RECT_F rect = D2D1::RectF(
-                    static_cast<float>(c::symbolSizeX * ix),
-                    static_cast<float>(c::symbolSizeY * iy),
-                    static_cast<float>(ceil(c::symbolSizeX * (ix + 1))),
-                    static_cast<float>(ceil(c::symbolSizeY * (iy + 1))));
+                    static_cast<float>(constants::charSizeX * ix),
+                    static_cast<float>(constants::charSizeY * iy),
+                    static_cast<float>(ceil(constants::charSizeX * (ix + 1))),
+                    static_cast<float>(ceil(constants::charSizeY * (iy + 1))));
 
                 if (bgBr != nullptr) {
-                    pRenderTarget->FillRectangle(rect, bgBr);
+                    renderTarget->FillRectangle(rect, bgBr);
                     bgBr->Release();
                 }
                 if (br != nullptr) {
-                    pRenderTarget->DrawTextA(wCh, 1, pWtTextFormat, rect, br);
+                    renderTarget->DrawTextA(wCh, 1, writeTextFormat, rect, br);
                     br->Release();
                 }
 
             }
         }
 
-        pRenderTarget->EndDraw();
+        renderTarget->EndDraw();
     }
 }

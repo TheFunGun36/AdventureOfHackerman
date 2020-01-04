@@ -7,11 +7,11 @@ Button::Button(byte posX, byte posY,
 
     activeTexture = new Map(textureId);
     //activeTexture->load(textureId);
-    bGenerateMouseEvents = true;
+    generateMouseEvents = true;
     this->action = action;
 }
 
-void Button::eMouseLmbClick(byte, byte) {
+void Button::emlClick(byte, byte) {
     action();
 }
 
@@ -19,18 +19,18 @@ Button::~Button() {
     delete activeTexture;
 }
 
-void Button::eMouseHoverStart(byte, byte) {
-    activeTexture->fillColor(MakeMono(90), c::clrDefBg);
+void Button::emhStart(byte, byte) {
+    activeTexture->fillColor(MakeMono(90), constants::clrDefBg);
 }
 
-void Button::eMouseHoverEnd(byte, byte) {
-    activeTexture->fillColor(c::clrDefText, c::clrDefBg);
+void Button::emhEnd(byte, byte) {
+    activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
 }
 
-void Button::eMouseLmbPressed(byte, byte) {
-    activeTexture->fillColor(MakeMono(127), c::clrDefBg);
+void Button::emlPressed(byte, byte) {
+    activeTexture->fillColor(MakeMono(127), constants::clrDefBg);
 }
 
-void Button::eMouseLmbReleased(byte, byte) {
-    activeTexture->fillColor(MakeMono(90), c::clrDefBg);
+void Button::emlReleased(byte, byte) {
+    activeTexture->fillColor(MakeMono(90), constants::clrDefBg);
 }

@@ -1,22 +1,23 @@
+#pragma once
 #include "../Engine.h"
 
 class Slider : public Object {
 public:
-    Slider(byte posX, byte posY, byte length,
-        const char* text, void valueChanged(byte newValue), byte defaultValue = '\x00');
+    Slider(byte posX, byte posY, byte sliderLength,
+        const char* text, void onValueChanged(byte newValue), byte defaultValue = '\x00');
     ~Slider();
 
 protected:
-    void eMouseLmbPressed(byte x, byte y) override;
-    void eMouseLmbReleased(byte x, byte y) override;
-    void eMouseHoverEnd(byte x, byte y) override;
-    void eMouseMoving(byte x, byte y) override;
+    void emlPressed(byte x, byte y) override;
+    void emlReleased(byte x, byte y) override;
+    void emhEnd(byte x, byte y) override;
+    void emhMoving(byte x, byte y) override;
     virtual void eValueChanged(byte newValue);
-    void (*valueChanged)(byte n);
+    void (*onValueChanged)(byte n);
 
-    byte length,
+    byte realLength,
         sliderLength;
     byte currentValue;
-    sym* basicTexture;
+    char* basicTexture;
     bool isMousePressed;
 };

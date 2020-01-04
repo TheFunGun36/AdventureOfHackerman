@@ -10,12 +10,12 @@ public:
 
 protected:
     void (*action)();
-    virtual void eMouseHoverStart(byte, byte) override;
-    virtual void eMouseHoverEnd(byte, byte) override;
-    virtual void eMouseLmbPressed(byte, byte) override;
-    virtual void eMouseLmbReleased(byte, byte) override;
+    virtual void emhStart(byte, byte) override;
+    virtual void emhEnd(byte, byte) override;
+    virtual void emlPressed(byte, byte) override;
+    virtual void emlReleased(byte, byte) override;
 
 private:
-    void eMouseLmbClick(byte, byte) override;
+    void emlClick(byte, byte) override;
 
 };

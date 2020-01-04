@@ -17,13 +17,13 @@ namespace engine {
         void renderMap(Map* map);
 
     private:
-        ID2D1Factory* pFactory;
-        ID2D1HwndRenderTarget* pRenderTarget;
-        IDWriteFactory* pWtFactory;
-        IDWriteTextFormat* pWtTextFormat;
+        ID2D1Factory* factory;
+        ID2D1HwndRenderTarget* renderTarget;
+        IDWriteFactory* writetFactory;
+        IDWriteTextFormat* writeTextFormat;
 
         inline void clearScreen(float r, float g, float b) {
-            pRenderTarget->Clear(D2D1::ColorF(r, g, b));
+            renderTarget->Clear(D2D1::ColorF(r, g, b));
         }
     };
 }

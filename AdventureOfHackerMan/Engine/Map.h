@@ -4,16 +4,7 @@
 #include "../Resources/resource.h"
 #include "Constants.h"
 
-//#define GETINDEX(x,y) (y * c::charsInX + x)
-//#define GETCH(strArr, x, y) strArr[y][x]
-//#define SETCH(strArr, x, y, ch) strArr[y][x] = ch
-
-/*
-  00RRGGBB
-*/
-
-typedef byte clr_t;
-typedef char sym;
+typedef byte color;
 
 #define GetRed(x) ((x & 48) >> 4)
 #define GetGreen(x) ((x & 12) >> 2)
@@ -29,41 +20,28 @@ b = (x & 128) ? (static_cast<float>(GetMono(x)) / 127.0f) : ((GetBlue(x) / 3.0f)
 
 struct Map {
 public:
-   byte sizeX, sizeY;
-
+    byte sizeX, sizeY;
 
     Map(int rcName);
     Map(byte sizeX, byte sizeY);
     ~Map();
-    const inline sym getSymbol(int x, int y) {
-        return ch[x + y * sizeX];
-    }
-    const inline clr_t getTextColor(int x, int y) {
-        return textColor[x + y * sizeX];
-    }
-    const inline clr_t getBgColor(int x, int y) {
-        return bgColor[x + y * sizeX];
-    }
-    inline void setSymbol(int x, int y, sym v) {
-        ch[x + y * sizeX] = v;
-    }
-    inline void setTextColor(int x, int y, clr_t v) {
-        textColor[x + y * sizeX] = v;
-    }
-    inline void setBgColor(int x, int y, clr_t v) {
-        bgColor[x + y * sizeX] = v;
-    }
-    void fill(sym cFiller);
-    void fillColor(clr_t textColor, clr_t bgColor);
-    //void load(int rcName);
-    void set(sym* texture);
+
+    const inline char getSymbol(int x, int y) { return symbol[x + y * sizeX]; }
+    const inline color getSymbolColor(int x, int y) { return symbolColor[x + y * sizeX]; }
+    const inline color getSymbolBgColor(int x, int y) { return symbolBgColor[x + y * sizeX]; }
+
+    inline void setSymbol(int x, int y, char v) { symbol[x + y * sizeX] = v; }
+    inline void setSymbolColor(int x, int y, color v) { symbolColor[x + y * sizeX] = v; }
+    inline void setSymbolBgColor(int x, int y, color v) { symbolBgColor[x + y * sizeX] = v; }
+
+    void fill(char cFiller);
+    void fillColor(color symbolColor, color symbolBgColor);
+    void set(char* texture);
+
     void append(const Map* other, byte posX, byte posY);
 
 private:
-    sym* ch;
-
-    clr_t* textColor;
-    clr_t* bgColor;
-
-    //static void getMapFromFile(char* map, sym* dest, int sizeX, int sizeY);
+    char* symbol;
+    color* symbolColor;
+    color* symbolBgColor;
 };
