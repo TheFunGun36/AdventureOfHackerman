@@ -1,9 +1,22 @@
 #pragma once
 #include "Object.h"
 
+struct LevelArray {
+public:
+    LevelArray(Level** levelArray) {
+        levelNumber = 0;
+        this->levelArray = levelArray;
+    }
+    void addLevel(Level* level) {
+        levelArray[levelNumber++] = level;
+    }
+    Level** levelArray;
+    int levelNumber;
+};
+
 class Level {
 public:
-    Level(int objectNumber, int backgroundId = 0);
+    Level(LevelArray *lvlArr, int objectNumber, int backgroundId = IDR_EMPTYBG);
     ~Level();
 
     inline Object** getObjectArray(int* count) {
@@ -14,7 +27,9 @@ public:
     virtual void tick(float deltaTime) {};
     Map background;
 
-protected:
+private:
+    friend Object;
+    void addObject(Object* obj);
     Object** objectList;
     int objectNumber;
 };

@@ -1,6 +1,7 @@
 #include "Object.h"
+#include "Level.h"
 
-Object::Object(byte posX, byte posY, Map* texture) {
+Object::Object(Level* lvl, byte posX, byte posY, Map* texture) {
     this->posX = posX;
     this->posY = posY;
 
@@ -9,6 +10,7 @@ Object::Object(byte posX, byte posY, Map* texture) {
     isMouseHovering = false;
     isLmbDownHandled = false;
     isRmbDownHandled = false;
+    lvl->addObject(this);
 }
 
 Object::~Object() {

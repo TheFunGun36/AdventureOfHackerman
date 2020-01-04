@@ -1,9 +1,8 @@
 #include "Button.h"
 
-Button::Button(byte posX, byte posY,
-    byte sizeX, byte sizeY,
+Button::Button(Level* level, byte posX, byte posY,
     int textureId, void action())
-    :Object(posX, posY, nullptr) {
+    :Object(level, posX, posY, nullptr) {
 
     activeTexture = new Map(textureId);
     //activeTexture->load(textureId);

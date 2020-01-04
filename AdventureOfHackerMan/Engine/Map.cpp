@@ -1,42 +1,51 @@
 #include "Map.h"
 
 Map::Map(int rcName) {
-    symbol = nullptr;
-    HRSRC source = FindResource(NULL, MAKEINTRESOURCE(rcName), "TEXTURE");
-    HGLOBAL resource = LoadResource(NULL, source);
-    LPVOID rawData = LockResource(resource);
-    char* data = static_cast<char*>(rawData);
-    int charactersToSkip = 0;
-    std::string firstLine;
-
-    if ((data[0] == 'B') && (data[1] == 'G')) {
-        charactersToSkip = 4;
+    if (rcName == IDR_EMPTYBG) {
         sizeX = constants::charsInX;
         sizeY = constants::charsInY;
+
+        symbol = new char[sizeY * sizeX];
+        std::fill(symbol, symbol + sizeX * sizeY, ' ');
     }
     else {
-        for (int i = 0; data[i] != ' '; i++) {
+        symbol = nullptr;
+        HRSRC source = FindResource(NULL, MAKEINTRESOURCE(rcName), "TEXTURE");
+        HGLOBAL resource = LoadResource(NULL, source);
+        LPVOID rawData = LockResource(resource);
+        char* data = static_cast<char*>(rawData);
+        int charactersToSkip = 0;
+        std::string firstLine;
+
+        if ((data[0] == 'B') && (data[1] == 'G')) {
+            charactersToSkip = 4;
+            sizeX = constants::charsInX;
+            sizeY = constants::charsInY;
+        }
+        else {
+            for (int i = 0; data[i] != ' '; i++) {
+                charactersToSkip++;
+                firstLine.push_back(data[i]);
+            }
+
+            sizeX = std::stoi(firstLine);
             charactersToSkip++;
-            firstLine.push_back(data[i]);
+            firstLine.clear();
+
+            for (int i = charactersToSkip; data[i] != '\r'; i++) {
+                charactersToSkip++;
+                firstLine.push_back(data[i]);
+            }
+
+            sizeY = std::stoi(firstLine);
+            charactersToSkip += 2;
         }
 
-        sizeX = std::stoi(firstLine);
-        charactersToSkip++;
-        firstLine.clear();
+        symbol = new char[sizeX * sizeY];
 
-        for (int i = charactersToSkip; data[i] != '\r'; i++) {
-            charactersToSkip++;
-            firstLine.push_back(data[i]);
+        for (int iy = 0; iy < sizeY; iy++) {
+            memcpy(symbol + sizeX * iy, data + iy * (sizeX + 2) + charactersToSkip, sizeX);
         }
-
-        sizeY = std::stoi(firstLine);
-        charactersToSkip += 2;
-    }
-
-    symbol = new char[sizeX * sizeY];
-
-    for (int iy = 0; iy < sizeY; iy++) {
-        memcpy(symbol + sizeX * iy, data + iy * (sizeX + 2) + charactersToSkip, sizeX);
     }
 
     symbolColor = new color[sizeY * sizeX];

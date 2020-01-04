@@ -6,11 +6,12 @@ BEGIN
   IDR_STARTBUTTON "StartButton.txt"
 END*/
 
-IDR_DEFAULTBG TEXTURE "../Textures/DefaultBG.txt"
-
 IDR_STARTBUTTON TEXTURE "../Textures/MainMenu/StartButton.txt"
 IDR_EXITBUTTON TEXTURE "../Textures/MainMenu/ExitButton.txt"
 IDR_OPTIONSBUTTON TEXTURE "../Textures/MainMenu/OptionsButton.txt"
 IDR_MAINMENUBG TEXTURE "../Textures/MainMenu/MainMenuBG.txt"
 IDR_OPTIONSMENUBG TEXTURE "../Textures/OptionsMenu/OptionsMenuBG.txt"
-IDR_BACKBUTTON TEXTURE "../Textures/OptionsMenu/BackButton.txt"
+IDR_BACKBUTTON TEXTURE "../Textures/BackButton.txt"
+IDR_SAMURAIBUTTON TEXTURE "../Textures/ClassChoosingMenu/SamuraiButton.txt"
+IDR_CRUSADERBUTTON TEXTURE "../Textures/ClassChoosingMenu/CrusaderButton.txt"
+IDR_THIEFBUTTON TEXTURE "../Textures/ClassChoosingMenu/ThiefButton.txt"

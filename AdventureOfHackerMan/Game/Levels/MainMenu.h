@@ -4,8 +4,7 @@
 
 class LMainMenu : public Level{
 public:
-    LMainMenu();
-    ~LMainMenu();
+    LMainMenu(LevelArray *lvlArr);
 
 private:
     Button* startButton;

@@ -3,8 +3,7 @@
 
 class Button : public Object {
 public:
-    Button(byte posX, byte posY,
-        byte sizeX, byte sizeY,
+    Button(Level* level, byte posX, byte posY,
         int textureId, void action());
     ~Button();
 

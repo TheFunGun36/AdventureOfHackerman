@@ -48,9 +48,6 @@
     <ClCompile Include="Game\Game.cpp">
       <Filter>Code\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Levels\ClassChoosing.cpp">
-      <Filter>Code\Game\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Levels\MainMenu.cpp">
       <Filter>Code\Game\Levels</Filter>
     </ClCompile>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="Engine\BasicObjects\Slider.cpp">
       <Filter>Code\Engine\BasicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\ClassChoosingMenu.cpp">
+      <Filter>Code\Game\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +89,6 @@
     <ClInclude Include="Game\Game.h">
       <Filter>Code\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Levels\ClassChoosing.h">
-      <Filter>Code\Game\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Levels\MainMenu.h">
       <Filter>Code\Game\Levels</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Engine\BasicObjects\Slider.h">
       <Filter>Code\Engine\BasicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\ClassChoosingMenu.h">
+      <Filter>Code\Game\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

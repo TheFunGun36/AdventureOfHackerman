@@ -1,8 +1,8 @@
 #include "Slider.h"
 
-Slider::Slider(byte posX, byte posY, byte sliderLength,
+Slider::Slider(Level* level, byte posX, byte posY, byte sliderLength,
     const char* text, void onValueChanged(byte newValue), byte defaultValue)
-    :Object(posX, posY) {
+    :Object(level, posX, posY) {
     
     generateMouseEvents = true;
     isMousePressed = false;

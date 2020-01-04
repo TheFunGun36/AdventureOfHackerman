@@ -36,7 +36,7 @@ namespace engine {
     }
 
     void changeLevel(LevelId levelId) {
-        currentLevel = levelList[levelId];
+        currentLevel = levelList[static_cast<int>(levelId)];
     }
 
     void computeGameLogic() {

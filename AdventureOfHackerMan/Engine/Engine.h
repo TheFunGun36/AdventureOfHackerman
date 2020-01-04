@@ -4,9 +4,10 @@
 #include "RenderEngine.h"
 #include "Level.h"
 
-enum LevelId {
-    idMainMenu,
-    idOptionsMenu
+enum class LevelId {
+    mainMenu,
+    optionsMenu,
+    classChoosingMenu
 };
 namespace engine {
     void initialize(HWND hWnd, HRESULT& hr, int levelNum, Level** levels);
@@ -14,6 +15,6 @@ namespace engine {
     void shutdown();
     void computeGameLogic();
     void renderGraphic();
-    void changeLevel(LevelId);
+    void changeLevel(LevelId levelId);
     Level* getCurrentLevel();
 }

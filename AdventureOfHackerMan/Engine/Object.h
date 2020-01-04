@@ -6,6 +6,8 @@ namespace engine {
     void computeGameLogic();
 }
 
+class Level;
+
 class Object {
 public:
 
@@ -14,7 +16,7 @@ public:
     }
     byte posX, posY;
 
-    Object(byte posX = '\x00', byte posY = '\x00', Map* texture = nullptr);
+    Object(Level* thisLevel, byte posX = '\x00', byte posY = '\x00', Map* texture = nullptr);
     ~Object();
 
 protected:

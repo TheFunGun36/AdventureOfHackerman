@@ -3,7 +3,7 @@
 
 class Slider : public Object {
 public:
-    Slider(byte posX, byte posY, byte sliderLength,
+    Slider(Level* level, byte posX, byte posY, byte sliderLength,
         const char* text, void onValueChanged(byte newValue), byte defaultValue = '\x00');
     ~Slider();
 

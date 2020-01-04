@@ -4,8 +4,8 @@
 
 class LOptionsMenu : public Level {
 public:
-    LOptionsMenu();
-    ~LOptionsMenu();
+    LOptionsMenu(LevelArray *lvlArr);
+    //~LOptionsMenu();
 
 private:
     Button* backButton;

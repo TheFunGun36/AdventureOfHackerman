@@ -1,39 +1,29 @@
 #include "Game.h"
 
-/* HOW TO CREATE GAYEMES LIKE A BOSS:
- * 1. add level in anon namespace
- * 2. init it in "initialize"
- * 3. delete it in "uninitialize"
- * 4. PROFIT
- * (you will spend more time by creating levels, actually)
- */
-
 namespace game {
     namespace {
         Level** level;
-        LMainMenu *lMainMenu;
-        LOptionsMenu* lOptionsMenu;
-        constexpr int levelsNum = 2;
-        //Level lOptions,
-          //lClassChoosing,
-         // lWantToExit;
+        constexpr int levelsNum = 3;
     }
 
-    void initialize(HWND hWnd, HRESULT& hr){
-        lMainMenu = new LMainMenu();
-        lOptionsMenu = new LOptionsMenu();
-
+    void initialize(HWND hWnd, HRESULT& hr) {
         level = new Level * [levelsNum];
-        level[0] = static_cast<Level*>(lMainMenu);
-        level[1] = static_cast<Level*>(lOptionsMenu);
+        LevelArray* lvlArr = new LevelArray(level);
+
+        LMainMenu* l1 = new LMainMenu(lvlArr);
+        LOptionsMenu* l2 = new LOptionsMenu(lvlArr);
+        LClassChoosingMenu* l3 = new LClassChoosingMenu(lvlArr);
         
-        
+
         engine::initialize(hWnd, hr, levelsNum, level);
-        engine::changeLevel(idMainMenu);
+        engine::changeLevel(LevelId::mainMenu);
+        delete lvlArr;
     }
 
     void uninitialize() {
-        delete lMainMenu;
+        for (int i = 0; i < levelsNum; i++) {
+            delete level[i];
+        }
         delete[]level;
         engine::uninitialize();
     }

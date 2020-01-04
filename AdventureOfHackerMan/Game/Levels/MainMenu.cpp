@@ -1,24 +1,20 @@
 #include "MainMenu.h"
 
-LMainMenu::LMainMenu()
-    :Level(3, IDR_MAINMENUBG) {
+LMainMenu::LMainMenu(LevelArray *lvlArr)
+    :Level(lvlArr, 3, IDR_MAINMENUBG) {
 
-    exitButton = new Button(6, 30, 20, 5,
-        IDR_EXITBUTTON, [] { engine::shutdown(); });
+    exitButton = new Button(this, 6, 30, IDR_EXITBUTTON,
+        [] { engine::shutdown(); });
 
-    optionsButton = new Button(6, 20, 37, 6,
-        IDR_OPTIONSBUTTON, [] { engine::changeLevel(idOptionsMenu); });
+    optionsButton = new Button(this, 6, 20, IDR_OPTIONSBUTTON,
+        [] { engine::changeLevel(LevelId::optionsMenu); });
 
-    startButton = new Button(6, 10, 27, 5,
-        IDR_STARTBUTTON, [] {/*TODO: change level to class choosing or smth*/});
-
-    objectList[0] = static_cast<Object*>(exitButton);
-    objectList[1] = static_cast<Object*>(optionsButton);
-    objectList[2] = static_cast<Object*>(startButton);
+    startButton = new Button(this, 6, 10, IDR_STARTBUTTON,
+        [] { engine::changeLevel(LevelId::classChoosingMenu); });
 }
 
-LMainMenu::~LMainMenu() {
+/*LMainMenu::~LMainMenu() {
     delete optionsButton;
     delete exitButton;
     delete startButton;
-}
+}*/
