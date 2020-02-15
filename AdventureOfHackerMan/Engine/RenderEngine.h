@@ -22,7 +22,7 @@ namespace engine {
         IDWriteFactory* writetFactory;
         IDWriteTextFormat* writeTextFormat;
 
-        inline void clearScreen(float r, float g, float b) {
+        FORCEINLINE void clearScreen(float r, float g, float b) {
             renderTarget->Clear(D2D1::ColorF(r, g, b));
         }
     };

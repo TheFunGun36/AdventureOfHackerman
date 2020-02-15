@@ -19,7 +19,7 @@ public:
     Level(LevelArray *lvlArr, int objectNumber, int backgroundId = IDR_EMPTYBG);
     ~Level();
 
-    inline Object** getObjectArray(int* count) {
+    FORCEINLINE Object** getObjectArray(int* count) {
         *count = objectNumber;
         return objectList;
     }

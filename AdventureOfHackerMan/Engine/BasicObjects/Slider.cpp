@@ -51,7 +51,7 @@ void Slider::eValueChanged(byte newValue) {
     currentValue = newValue;
     activeTexture->set(basicTexture);
     activeTexture->fillColor(constants::clrDefText, constants::clrDefBg);
-    activeTexture->setSymbolColor(newValue, 1, MakeMono(127));
+    activeTexture->setSymbolColor(newValue, 1, Map::createMono(127));
     onValueChanged(newValue);
 }
 
@@ -63,7 +63,7 @@ Slider::~Slider() {
 void Slider::emlPressed(byte x, byte y) {
     isMousePressed = true;
     emhMoving(x, y);
-    activeTexture->setSymbolColor(currentValue, 1, MakeMono(127));
+    activeTexture->setSymbolColor(currentValue, 1, Map::createMono(127));
 }
 
 void Slider::emlReleased(byte, byte) {

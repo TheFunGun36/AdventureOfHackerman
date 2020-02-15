@@ -11,7 +11,7 @@ class Level;
 class Object {
 public:
 
-    const inline Map* getTexture() {
+    const FORCEINLINE Map* getTexture() {
         return activeTexture;
     }
     byte posX, posY;

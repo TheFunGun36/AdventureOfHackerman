@@ -61,13 +61,13 @@ namespace engine {
                 float r, g, b;
                 {
                     color symbolColor = map->getSymbolColor(ix, iy);
-                    ExpandColor(symbolColor, r, g, b);
+                    Map::expandColor(symbolColor, r, g, b);
                 }
                 renderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &br);
 
                 {
                     color symbolBgColor = map->getSymbolBgColor(ix, iy);
-                    ExpandColor(symbolBgColor, r, g, b);
+                    Map::expandColor(symbolBgColor, r, g, b);
                 }
                 renderTarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b), &bgBr);
 

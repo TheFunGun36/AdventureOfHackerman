@@ -1,0 +1,34 @@
+<Project>
+  <Name>AdventureOfHackerman</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Main</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Structure">
+        <Name>Map</Name>
+        <Access>Public</Access>
+        <Location left="730" top="193" />
+        <Size width="307" height="366" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">char[,] symbol</Member>
+        <Member type="Field">color[,] symbolBgColor</Member>
+        <Member type="Field">color[,] symbolColor</Member>
+        <Member type="Constructor">public Map(int rcName)</Member>
+        <Member type="Constructor">public Map(byte sizeX, byte sizeY)</Member>
+        <Member type="Property">public byte sizeX { get; set; }</Member>
+        <Member type="Property">public byte sizeY { get; set; }</Member>
+        <Member type="Method">public char getSymbol(byte x, byte y)</Member>
+        <Member type="Method">public color getSymbolColor(byte x, byte y)</Member>
+        <Member type="Method">public color getSymbolBgColor(byte x, byte y)</Member>
+        <Member type="Method">public void setSymbol(byte x, byte y, char v)</Member>
+        <Member type="Method">public void setSymbolColor(byte x, byte y, color v)</Member>
+        <Member type="Method">public void setSymbolBgColor(byte x, byte y, color v)</Member>
+        <Member type="Method">public void fill(char filler)</Member>
+        <Member type="Method">public void fillColor(color symbolColor, color symbolBgColor)</Member>
+        <Member type="Method">public void set(char[,] texture)</Member>
+        <Member type="Method">public void append(ref Map other, byte posX, byte posY)</Member>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+</Project>

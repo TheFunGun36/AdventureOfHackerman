@@ -19,7 +19,7 @@ Button::~Button() {
 }
 
 void Button::emhStart(byte, byte) {
-    activeTexture->fillColor(MakeMono(90), constants::clrDefBg);
+    activeTexture->fillColor(Map::createMono(90), constants::clrDefBg);
 }
 
 void Button::emhEnd(byte, byte) {
@@ -27,9 +27,9 @@ void Button::emhEnd(byte, byte) {
 }
 
 void Button::emlPressed(byte, byte) {
-    activeTexture->fillColor(MakeMono(127), constants::clrDefBg);
+    activeTexture->fillColor(Map::createMono(127), constants::clrDefBg);
 }
 
 void Button::emlReleased(byte, byte) {
-    activeTexture->fillColor(MakeMono(90), constants::clrDefBg);
+    activeTexture->fillColor(Map::createMono(90), constants::clrDefBg);
 }
