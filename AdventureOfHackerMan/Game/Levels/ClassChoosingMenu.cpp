@@ -5,6 +5,6 @@ LClassChoosingMenu::LClassChoosingMenu(LevelArray* lvlArr)
     backButton = new Button(this, 52, 38, IDR_BACKBUTTON,
         [] {engine::changeLevel(LevelId::mainMenu); });
     samuraiButton = new Button(this, 2, 2, IDR_SAMURAIBUTTON, [] {});
-    crusaderButton = new Button(this, 44, 2, IDR_CRUSADERBUTTON, [] {});
-    thiefButton = new Button(this, 86, 2, IDR_THIEFBUTTON, [] {});
+    crusaderButton = new Button(this, 44, 2, IDR_EVREYBUTTON, [] {});
+    thiefButton = new Button(this, 86, 2, IDR_DOLBOEBBUTTON, [] {});
 }
